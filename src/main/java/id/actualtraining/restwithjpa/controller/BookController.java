@@ -3,6 +3,11 @@ package id.actualtraining.restwithjpa.controller;
 import id.actualtraining.restwithjpa.entity.Book;
 import id.actualtraining.restwithjpa.model.MyStatus;
 import id.actualtraining.restwithjpa.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +23,11 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Operation(summary = "Mengambil semua data buku",
+            description = "Mengambil semua data buku")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200",description = "Semua buku ditemukan",
+            content = {@Content(mediaType = "application/json",schema = @Schema(implementation = Book.class))}),
+            @ApiResponse(responseCode = "404",description = "buku tidak ditemukan",content = @Content)})
     @GetMapping
     public List<Book> getAll(){
         return bookService.findAll();
