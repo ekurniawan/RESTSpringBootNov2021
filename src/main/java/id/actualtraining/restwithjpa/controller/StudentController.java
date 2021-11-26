@@ -24,4 +24,10 @@ public class StudentController {
                                         @RequestBody List<Course> courses){
         studentService.RegisterStudentToCourse(id,courses);
     }
+
+    /*@PostMapping("/register/{id}")
+    public void registerStudentToCourse(@PathVariable Long id,
+                                        @RequestBody Course course){
+        studentService.RegisterStudentToCourseSingle(id,course);
+    }*/
 }

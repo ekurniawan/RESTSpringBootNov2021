@@ -50,4 +50,14 @@ public class StudentServiceImpl implements StudentService {
             studentRepository.save(updStudent);
         }
     }
+
+    @Override
+    public void RegisterStudentToCourseSingle(Long studentid, Course course) {
+        Optional<Student> student = studentRepository.findById(studentid);
+        if(student.isPresent()){
+            Student updStudent = student.get();
+            updStudent.getCourses().add(course);
+            studentRepository.save(updStudent);
+        }
+    }
 }

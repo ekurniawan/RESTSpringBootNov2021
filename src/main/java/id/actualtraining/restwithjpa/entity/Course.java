@@ -1,19 +1,18 @@
 package id.actualtraining.restwithjpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @Entity
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +23,6 @@ public class Course {
     private double fee;
 
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Student> students = new HashSet<>();
 }

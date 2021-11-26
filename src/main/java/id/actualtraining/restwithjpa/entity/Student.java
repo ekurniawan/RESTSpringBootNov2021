@@ -1,15 +1,14 @@
 package id.actualtraining.restwithjpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @Entity
 @ToString
 @NoArgsConstructor
@@ -25,5 +24,6 @@ public class Student {
     @JoinTable(name = "student_course",joinColumns = {@JoinColumn(name = "student_id",referencedColumnName = "id",nullable = false,updatable = false)},
     inverseJoinColumns = {@JoinColumn(name = "course_id",referencedColumnName = "id",
     nullable = false,updatable = false)})
+    @JsonIgnore
     private Set<Course> courses = new HashSet<>();
 }

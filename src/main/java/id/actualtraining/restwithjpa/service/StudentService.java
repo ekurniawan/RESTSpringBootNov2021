@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface StudentService extends CRUD<Student> {
     public void RegisterStudentToCourse(Long studentid, List<Course> courses);
+    public void RegisterStudentToCourseSingle(Long studentid,Course course);
 }
